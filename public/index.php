@@ -12,7 +12,9 @@ define('MODEL', APP . "model" . DIRECTORY_SEPARATOR);
 
 define('VIEW', APP . "view" . DIRECTORY_SEPARATOR);
 
-$modules = [APP, CORE, CONTROLLER, MODEL, VIEW];
+define('HELPERS', APP . "helpers" . DIRECTORY_SEPARATOR);
+
+$modules = [APP, CORE, CONTROLLER, MODEL, VIEW, HELPERS];
 
 set_include_path(ROOT . PATH_SEPARATOR . implode(PATH_SEPARATOR, $modules));
 

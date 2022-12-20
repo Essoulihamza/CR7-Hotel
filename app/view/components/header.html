@@ -8,19 +8,61 @@
     <link rel="stylesheet" href="/assets/style/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
+    <style>
+        .carousel-open:checked + .carousel-item {
+            position: static;
+            opacity: 100;
+        }
+        .carousel-item {
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+        }
+        #carousel-1:checked ~ .control-1,
+        #carousel-2:checked ~ .control-2,
+        #carousel-3:checked ~ .control-3 {
+            display: block;
+        }
+        .carousel-indicators {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+        #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+        #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+            color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
+        }
+    </style>
 </head>
-
-<body>
-    <header class="flex flex-col h-screen bg-green-200 justify-around w-72">
-        <img src="/assets/images/logo.png" alt="Hotel logo">
-        <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Booking</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact</a></li>
-        </ul>
-        <div>
-            <button>Login</button>
-            <button>Sign-up</button>
+<body class="bg-white font-sans leading-normal tracking-normal">
+    <nav class="bg-green-700 p-2 mt-0 fixed w-full z-10 top-0">
+        <div class="container mx-auto flex flex-wrap items-center">
+		    <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+				<a class="text-white no-underline hover:text-white hover:no-underline" href="#">
+					<span class="text-2xl pl-2"><i class="em em-grinning"></i>PESTANA</span>
+				</a>
+            </div>
+			<div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+				<ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+				  <li class="mr-3">
+					<a class="inline-block py-2 px-4 text-white no-underline" href="#">Home</a>
+				  </li>
+				  <li class="mr-3">
+					<a class="inline-block text-green-300 no-underline hover:text-green-200 hover:text-underline py-2 px-4" href="#">Booking</a>
+				  </li>
+				  <li class="mr-3">
+					<a class="inline-block text-green-300 no-underline hover:text-green-200 hover:text-underline py-2 px-4" href="#">About</a>
+				  </li>
+					<li class="mr-3">
+					<a class="inline-block text-green-300 no-underline hover:text-green-200 hover:text-underline py-2 px-4" href="#">Contact</a>
+				  </li>
+				</ul>
+			</div>
         </div>
-    </header>
+    </nav>
