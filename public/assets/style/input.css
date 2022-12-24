@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+    transition: all 0.3s ease;
+}
+#menu-btn.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-btn.is-active .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+    background-color: #1e293b;
+}
+
+#menu-btn.is-active .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+    background-color: #1e293b;
+}

@@ -7,7 +7,7 @@ class PageController extends Controller {
     public function login(){}
     public function SignUp(){}
     public function Booking(){
-        $this->view('Pages/booking', 'Hotel Booking');
+        $this->view('Pages/booking', 'Booking');
         $this->view->render();
     }
     public function About(){}
