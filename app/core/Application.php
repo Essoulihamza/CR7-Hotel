@@ -6,7 +6,6 @@ class Application {
 
     public function __construct() {
         $this->prepareURL();
-
         if(file_exists( CONTROLLER . $this->controller . '.php')) {
         
             $this->controller = new $this->controller;

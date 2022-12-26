@@ -17,12 +17,10 @@
             <ul class="hidden md:flex space-x-14">
                     <li><a <?php echo ($this->viewTitle == 'Home' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/index">Home</a></li>
                     <li><a <?php echo ($this->viewTitle == 'Booking' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Booking">Booking</a></li>
-                    <li><a <?php echo ($this->viewTitle == 'About' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/About">About</a></li>
-                    <li><a <?php echo ($this->viewTitle == 'Contact' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Contact">Contact</a></li>
             </ul>
             <div class="hidden md:flex space-x-1 items-center">
-                <a class="text-slate-400  font-medium px-6 py-2 hover:text-slate-800 baseline" href="">Login</a>
-                <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 " href="">Sign-up</a>
+                <a id="login"  class="text-slate-400  font-medium px-6 py-2 hover:text-slate-800 baseline cursor-pointer" href="http://hotel.com/page/login/">Login</a>
+                <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 active:bg-slate-800 " href="http://hotel.com/page/SignUp">Sign-up</a>
             </div>
             <!-- humberger icon -->
             <button id="menu-btn" class="burger md:hidden focus:outline-none flex flex-col bg-secondary rounded-full w-10 h-10 justify-center items-center">
@@ -37,20 +35,8 @@
                     <a <?php echo ($this->viewTitle == 'Booking' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Booking">Booking</a>
                     <a <?php echo ($this->viewTitle == 'About' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/About">About</a>
                     <a <?php echo ($this->viewTitle == 'Contact' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Contact">Contact</a>
-                    <a class="text-slate-400 px-6 py-2 hover:text-slate-800 " href="">Login</a>
-                    <a class="bg-slate-400 text-slate-50 px-6 py-2 rounded-full  hover:bg-slate-800 " href="">Sign-up</a>
+                    <a class="text-slate-400 px-6 py-2 hover:text-slate-800" href="http://hotel.com/page/login" >Login</a>
+                    <a class="bg-slate-400 text-slate-50 px-6 py-2 rounded-full  hover:bg-slate-800 " href="http://hotel.com/page/SignUp">Sign-up</a>
                 </div>
         </div>
 </header>
-<script>
-    // burger menu 
-let menu = document.getElementById("menu");
-let burgerMenu = document.getElementById("menu-btn");
-burgerMenu.addEventListener('click', () => {
-    burgerMenu.classList.toggle('is-active');
-    menu.classList.toggle('flex');
-    menu.classList.toggle('hidden');
-});
-console.log(menu);
-console.log(burgerMenu);
-</script>
