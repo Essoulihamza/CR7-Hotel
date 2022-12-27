@@ -8,7 +8,7 @@ class Controller {
         return $this->view;
     }
     public function model($modelName) {
-        if(file_exists(MODEL . $modelName . 'php')) {
+        if(file_exists(MODEL . $modelName . '.php')) {
             $this->model = new $modelName;
         }
     }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/style/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title><?php echo $this->viewTitle; ?></title>
 </head>
@@ -12,16 +13,28 @@
     <header class="bg-light flex px-10 justify-between rounded items-center md:px-16">
         <nav class="relative container flex justify-between items-center mb-2">
             <div>
-                <img src="/assets/images/logo.png" alt="hotel logo" width="100" class="py-1">
+               <a href="http://hotel.com/page/index"><img src="/assets/images/logo.png" alt="hotel logo" width="100" class="py-1"></a> 
             </div>
             <ul class="hidden md:flex space-x-14">
                     <li><a <?php echo ($this->viewTitle == 'Home' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/index">Home</a></li>
                     <li><a <?php echo ($this->viewTitle == 'Booking' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Booking">Booking</a></li>
+                    <?php if (isset($_SESSION['admin']) && $_SESSION['admin']) { ?>
+                    <li><a <?php echo ($this->viewTitle == 'Dashboard' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/dashboard">Dashboard</a></li>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['admin']) && !$_SESSION['admin']) { ?>
+                        <li><a <?php echo ($this->viewTitle == 'My Rooms' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/MyRooms">My Rooms</a></li>
+                    <?php } ?>
             </ul>
+            <?php if (isset($_SESSION['admin'])) { ?>
+                <div class="hidden md:flex space-x-1 items-center">
+                <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 active:bg-slate-800 " href="http://hotel.com/page/LogOut">Log-out</a>
+                </div>
+            <?php } else { ?>
             <div class="hidden md:flex space-x-1 items-center">
                 <a id="login"  class="text-slate-400  font-medium px-6 py-2 hover:text-slate-800 baseline cursor-pointer" href="http://hotel.com/page/login/">Login</a>
                 <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 active:bg-slate-800 " href="http://hotel.com/page/SignUp">Sign-up</a>
             </div>
+            <?php } ?>
             <!-- humberger icon -->
             <button id="menu-btn" class="burger md:hidden focus:outline-none flex flex-col bg-secondary rounded-full w-10 h-10 justify-center items-center">
                 <span class="bar w-5 h-0.5 bg-light m-0.5"></span>
@@ -33,10 +46,15 @@
                 <div id="menu" class="absolute  hidden flex-col items-center  self-end py-8 mt-10 space-y-6 font-bold bg-light sm:w-auto sm:self-center left-6 right-6 drop-shadow-md rounded z-50">
                     <a <?php echo ($this->viewTitle == 'Home' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/index">Home</a>
                     <a <?php echo ($this->viewTitle == 'Booking' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Booking">Booking</a>
-                    <a <?php echo ($this->viewTitle == 'About' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/About">About</a>
-                    <a <?php echo ($this->viewTitle == 'Contact' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Contact">Contact</a>
+                    <?php if (isset($_SESSION['admin']) && $_SESSION['admin']) { ?>
+                        <a <?php echo ($this->viewTitle == 'Dashboard' ? 'class="bg-slate-900 text-light rounded  hover:text-secondary py-3 px-6"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/dashboard">Dashboard</a>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['admin'])) { ?> 
+                        <a class="bg-slate-400 text-slate-50 px-6 py-2 rounded-full  hover:bg-slate-800 " href="http://hotel.com/page/LogOut">Log-out</a>
+                    <?php } else { ?>
                     <a class="text-slate-400 px-6 py-2 hover:text-slate-800" href="http://hotel.com/page/login" >Login</a>
                     <a class="bg-slate-400 text-slate-50 px-6 py-2 rounded-full  hover:bg-slate-800 " href="http://hotel.com/page/SignUp">Sign-up</a>
+                    <?php } ?>
                 </div>
         </div>
 </header>

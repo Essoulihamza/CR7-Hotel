@@ -1,0 +1,30 @@
+<?php include VIEW . 'components/header.phtml'; ?>
+<section class="px-2 my-6 md:px-16">
+    <div class="flex md:justify-end justify-center my-6 ">
+        <button class="bg-secondary text-light w-24 h-12 rounded"><a href="#">Add</a></button>
+    </div>
+        <table class="table-fixed w-full">
+            <thead class="bg-secondary w-full">
+                <tr class="flex justify-between md:px-10 px-2 text-light w-full h-10 items-center">
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Capacity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+                <tr class="flex items-start justify-between md:px-10 px-2 text-dark w-full border-2 ">
+                    <td>1</td>
+                    <td>Suit</td>
+                    <td>6</td>
+                    <td class="flex space-x-6">
+                        <a href=""><i class="uil uil-edit-alt"></i></a>
+                        <a href=""><i class="uil uil-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+<?php include VIEW . 'components/footer.phtml'; ?>
+
