@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/view/components/header.phtml'],
+  content: ['./app/view/components/header.phtml',
+              './app/view/components/*.phtml',
+              './app/view/*.phtml'],
   theme: {
     screens: {
       'sm': '480px',
@@ -9,7 +11,7 @@ module.exports = {
       'xl': '1440px'
     },
     extend: {
-      
+
       colors: {
         dark: '#1e293b',
         light: '#f8fafc',

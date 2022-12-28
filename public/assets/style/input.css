@@ -1,9 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-    transition: all 0.3s ease;
-}
+
 #menu-btn.is-active .bar:nth-child(2) {
     opacity: 0;
 }
@@ -17,9 +15,10 @@
     transform: translateY(-6px) rotate(-45deg);
     background-color: #1e293b;
 }
+
 #login-form {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%, -50%);
 }

@@ -6,17 +6,19 @@
         <table class="table-fixed w-full">
             <thead class="bg-secondary w-full">
                 <tr class="flex justify-between md:px-10 px-2 text-light w-full h-10 items-center">
-                    <th>ID</th>
+                    <th>Image</th>
                     <th>Type</th>
                     <th>Capacity</th>
+                    <th>Price</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody class="bg-light">
-                <tr class="flex items-start justify-between md:px-10 px-2 text-dark w-full border-2 ">
-                    <td>1</td>
+                <tr class="flex justify-between md:px-10 px-2 text-dark w-full border-2 items-center ">
+                    <td><img src="/assets/images/background-2.jpg" class="h-16" alt="room image"></td>
                     <td>Suit</td>
                     <td>6</td>
+                    <td>450 DH</td>
                     <td class="flex space-x-6">
                         <a href=""><i class="uil uil-edit-alt"></i></a>
                         <a href=""><i class="uil uil-trash-alt"></i></a>
@@ -25,6 +27,6 @@
             </tbody>
         </table>
 </section>
-
-<?php include VIEW . 'components/footer.phtml'; ?>
+<?php include VIEW . 'components/CRUD/add.phtml'; 
+include VIEW . 'components/footer.phtml'; ?>
 
