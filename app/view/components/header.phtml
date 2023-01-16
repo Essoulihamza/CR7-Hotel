@@ -6,7 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/style/style.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://css.gg/close.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    <script>
+    tailwind.config = {
+         theme: {
+    extend: {
+
+      colors: {
+        dark: '#1e293b',
+        light: '#f8fafc',
+        secondary: '#94a3b8',
+      },
+    },
+  },
+    }
+    </script>
     <title><?php echo $this->viewTitle; ?></title>
 </head>
 <body class="max-w-screen-2xl mx-auto bg-slate-900 flex flex-col h-screen">

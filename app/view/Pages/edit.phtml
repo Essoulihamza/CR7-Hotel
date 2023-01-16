@@ -1,0 +1,47 @@
+<?php include VIEW . "components/header.phtml";?>
+<section class="w-full h-full flex flex-col justify-center items-center gap-5 mt-10">
+<form  action="http://hotel.com/Chamber/editRoom/<?php echo $this->viewData['chamber']->id; ?>" method="post" class="flex flex-col bg-light items-center rounded w-5/12  max-w-2xl min-w-fit px-12"
+    enctype="multipart/form-data">
+        <div class="bg-secondary rounded-b-lg mb-6 md:mb-12 w-1/2">
+            <h2 class="text-xl text-b text-light  py-2 md:px-4  text-center">Add Room</h2>
+        </div>
+        <div id="selection-container" class="flex justify-center items-center w-full flex-col md:flex-row gap-y-6 md:justify-around mb-6 md:mb-12">
+            <div class="flex justify-center flex-col z-50">
+                <button id="room-select" type="button" class="select relative flex justify-between items-center bg-slate-400 border focus:outline-none  text-slate-50 rounded focus:ring ring-slate-900 w-48">
+                    <input type="text" name="room-type" id="selected-room-value" class="hidden" value="<?php echo $this->viewData['chamber']->type ?>">
+                    <p id="selected-room-view" class="selected-type-view px-4 cursor-pointer"><?php echo  isset($this->viewData['chamber']) ?  $this->viewData['chamber']->type :  'select room type'; ?></p>
+                    <span class="border-l p-2">
+                        <svg  class="w-5 h-5"
+                        fill="#1e293b" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330.002 330.002" xml:space="preserve" transform="rotate(180)" stroke="#1e293b"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_105_" d="M324.001,209.25L173.997,96.75c-5.334-4-12.667-4-18,0L6.001,209.25c-6.627,4.971-7.971,14.373-3,21 c2.947,3.93,7.451,6.001,12.012,6.001c3.131,0,6.29-0.978,8.988-3.001L164.998,127.5l141.003,105.75c6.629,4.972,16.03,3.627,21-3 C331.972,223.623,330.628,214.221,324.001,209.25z"></path> </g>
+                        </svg>
+                    </span>
+                    <div id="room-types-container" class="absolute hidden  top-full min-w-full w-max bg-secondary shadow-md mt-1 rounded">
+                        <ul class="text-left border rounded">
+                            <li class="px-2 md:px-4 py-1 hover:bg-slate-900 border-b rounded">Single</li>
+                            <li class="px-2 md:px-4 py-1 hover:bg-slate-900 border-b rounded">Double</li>
+                            <li class="px-2 md:px-4 py-1 hover:bg-slate-900 border-b rounded">Suit</li>
+                        </ul>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div id="suit-capacity-conatiner" class="hidden  space-y-3 items-center flex-col md:flex-col mb-6">
+            <label>Suit capacity</label>
+            <input id="suit-capacity" class="border-black  text-secondary text-center focus:text-left focus:outline-none rounded h-8 px-1"
+             type="number" name="room-capacity" placeholder="Suit capacity" value="<?php echo $this->viewData['chamber']->capacity ?>">
+        </div>
+        <div class="flex space-y-3 items-center flex-col md:flex-col mb-6">
+            <label for="room price">Room price/night</label>
+            <input class=" border-black  text-secondary text-center focus:text-left focus:outline-none rounded h-8 px-1"
+             type="number" name="room-price" placeholder="Room price" min="1" value="<?php echo $this->viewData['chamber']->price ?>">
+        </div>
+            <div class="bg-slate-400 text-slate-50 w-48 text-center px-4 py-2 rounded cursor-pointer mb-6" onclick="document.getElementsByClassName('room_img')[0].click()">Upload Image</div>
+            <input type="File"  name="room_img" class="hidden room_img">
+
+            <input class="w-full bg-slate-400 text-slate-50 rounded py-2 mb-3 cursor-pointer"
+            type="submit" value="Edit"  name="edit-chamber">
+</form>
+<button class="bg-white text-center text-dark p-2 rounded-full"><a href="http://hotel.com/page/dashboard">Return to dashboard</a> </button>
+</section>
+
+<?php include VIEW . "components/footer.phtml"; ?>

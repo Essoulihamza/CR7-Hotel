@@ -39,7 +39,7 @@ class PageController extends Controller {
                     $this->view('Pages/Login', 'login', ['message' =>'Incorrect password .']);
                     $this->view->render();
                 }
-                else if($this->model->getUser($userName)['admin']) {
+                else if($this->model->getUser($userName)['role']) {
                     $_SESSION['admin'] = true;
                     header('location: http://hotel.com/page/index');
                     return;
@@ -80,6 +80,10 @@ class PageController extends Controller {
                     $this->view('Pages/sign-up', 'Sign Up', ['message' =>'password must be more than 3 characters.']);
                     $this->view->render();
                 }
+                else if($this->model->getUser($userName)) {
+                    $this->view('Pages/sign-up', 'Sign Up', ['message' =>'this user name is already taken.']);
+                    $this->view->render();
+                }
                 else {
 
                     $this->model->insertUser($userName, password_hash($password, PASSWORD_BCRYPT));
@@ -96,11 +100,27 @@ class PageController extends Controller {
     }
     public function dashboard() {
         if($_SESSION['admin']) {
-            $this->view('Pages/dashboard', 'Dashboard');
+            $this->model('Chamber');
+            $this->view('Pages/dashboard', 'Dashboard', ['chambers' => $this->model->getChambers()]);
             $this->view->render();
         }else {
             header('location: http://hotel.com/page/index');
         }
+    }
+    public function add() {
+        if($_SESSION['admin'])
+            $this->view('Pages/add', 'add chamber')->render();
+        else
+            header('Location: http://hotel.com/page/index');
+    }
+    public function edit($id) {
+        if($_SESSION['admin']) {
+            $this->model('chamber')->getChamber($id);
+            $this->view('Pages/edit', 'edit chamber', ['chamber' => $this->model])->render();
+        }
+            
+        else
+            header('Location: http://hotel.com/page/index');
     }
      public function Validate($data)
     {

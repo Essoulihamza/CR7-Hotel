@@ -1,11 +1,12 @@
 <?php include VIEW . 'components/header.phtml'; ?>
 <section class="px-2 my-6 md:px-16">
     <div class="flex md:justify-end justify-center my-6 ">
-        <button class="bg-secondary text-light w-24 h-12 rounded"><a href="#">Add</a></button>
+        <button id="add-button" class="bg-secondary text-light w-24 h-12 rounded"><a href="http://hotel.com/page/add">Add</a></button>
     </div>
         <table class="table-fixed w-full">
             <thead class="bg-secondary w-full">
-                <tr class="flex justify-between md:px-10 px-2 text-light w-full h-10 items-center">
+                <tr class="flex justify-between  md:px-10 px-2 text-light w-full h-10 items-center">
+                    <th>ID</th>
                     <th>Image</th>
                     <th>Type</th>
                     <th>Capacity</th>
@@ -14,19 +15,33 @@
                 </tr>
             </thead>
             <tbody class="bg-light">
-                <tr class="flex justify-between md:px-10 px-2 text-dark w-full border-2 items-center ">
-                    <td><img src="/assets/images/background-2.jpg" class="h-16" alt="room image"></td>
-                    <td>Suit</td>
-                    <td>6</td>
-                    <td>450 DH</td>
+            <?php
+            if (array_key_exists('chambers', $this->viewData) && !empty($this->viewData['chambers'])) {
+                foreach ($this->viewData['chambers'] as $chamber) {
+                    ?>
+                <tr class="flex justify-between  md:px-10 px-2 text-dark w-full border-2 items-center ">
+                    <td><?php echo $chamber['ID'] ?></td>
+                    <td><img src="/assets/images/chambers/<?php echo $chamber['image'] ?>" class="h-16" alt="room image"></td>
+                    <td><?php echo $chamber['type'] ?></td>
+                    <td><?php echo $chamber['capacity'] ?></td>
+                    <td><?php echo $chamber['price'] ?> DH</td>
                     <td class="flex space-x-6">
-                        <a href=""><i class="uil uil-edit-alt"></i></a>
-                        <a href=""><i class="uil uil-trash-alt"></i></a>
+                        <span  class="edit-room-button cursor-pointer"><a href="http://hotel.com/page/edit/<?php echo $chamber['ID'] ?>"><i class="uil uil-edit-alt"></i></a></span>
+                        <span  id="delete-room-button" class="cursor-pointer" ><a href="http://hotel.com/Chamber/Delete/<?php echo $chamber['ID'] ?>"><i class="uil uil-trash-alt"></i></a></span>
                     </td>
                 </tr>
+                <?php }
+            }else { ?>
+                <tr class="flex justify-center items-center w-full text-dark md:px-10 px-2">
+                    <td class="text-center">No Rooms added</td>
+                </tr>
+                <?php } ?>
             </tbody>
         </table>
 </section>
-<?php include VIEW . 'components/CRUD/add.phtml'; ?>
-<?php include VIEW . 'components/footer.phtml'; ?>
+<?php  include VIEW . 'components/footer.phtml'; 
+ ?>
+<script>
+    
+</script>
 
