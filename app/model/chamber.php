@@ -61,4 +61,28 @@ class Chamber extends DataBase {
         $result->bindParam('id', $id, PDO::PARAM_INT);
         $result->execute();
     }
+    public function searchChamber($type, $startDate, $endDate) {
+        $sql = "
+        SELECT DISTINCT chamber.ID,
+                        chamber.type,
+                        chamber.capacity,
+                        chamber.price,
+                        chamber.image,
+                        Res.starting,
+                        Res.ending
+        FROM chamber
+        LEFT JOIN reservation Res 
+        ON chamber.ID = Res.room 
+        AND  (
+                    ( Res.starting NOT BETWEEN $startDate AND $endDate )
+                AND 
+                    ( Res.ending NOT BETWEEN $startDate AND $endDate ) 
+        ) 
+        WHERE type = $type;
+        ";
+        $result = $this->connect()->prepare($sql);  
+        $result->execute();
+        $result = $result->fetchAll();
+        return print_r($result);
+    }
 }

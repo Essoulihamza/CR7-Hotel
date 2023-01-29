@@ -1,6 +1,6 @@
 <?php include VIEW . "components/header.phtml";?>
 <section class="text-light body-font md:px-16 px-10 flex justify-center items-center h-full">
-  <form action="" class="flex flex-col items-center space-y-10">
+  <form action="http://hotel.com/chamber/Search" class="flex flex-col items-center space-y-10" method="POST">
     <div class="flex flex-col rounded bg-light p-4 md:flex-row gap-y-6 gap-x-3 justify-between items-center">
     <input type="date" min="2023-01-15" max="2023-09-15" name="starting-date" id="" class="bg-secondary text-white w-48 rounded py-4 cursor-pointer" >
     <input type="date" min="2023-01-16" max="2023-12-30" name="ending-date" id="" class="bg-secondary text-white w-48 rounded py-4 cursor-pointer">
@@ -25,8 +25,8 @@
             </div>
         </div>
         <div id="suit-capacity-conatiner" class="hidden  space-y-3 items-center flex-col md:flex-col mb-6">
-            <label>Suit capacity</label>
-            <input id="suit-capacity" class="border-black  text-secondary text-center focus:text-left focus:outline-none rounded h-8 px-1"
+            <label class="hidden">Suit capacity</label>
+            <input id="suit-capacity" class="hidden border-black  text-secondary text-center focus:text-left focus:outline-none rounded h-8 px-1"
              type="number" name="room-capacity" placeholder="Suit capacity" value="">
         </div>
     </div>
