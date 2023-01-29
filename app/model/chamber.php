@@ -63,24 +63,25 @@ class Chamber extends DataBase {
     }
     public function searchChamber($type, $startDate, $endDate) {
         $sql = "
-        SELECT DISTINCT chamber.ID,
-                        chamber.type,
-                        chamber.capacity,
-                        chamber.price,
-                        chamber.image,
-                        Res.starting,
-                        Res.ending
-        FROM chamber
-        LEFT JOIN reservation Res 
-        ON chamber.ID = Res.room 
-        AND  (
-                    ( Res.starting NOT BETWEEN $startDate AND $endDate )
-                AND 
-                    ( Res.ending NOT BETWEEN $startDate AND $endDate ) 
-        ) 
-        WHERE type = $type;
+        SELECT * 
+        FROM chamber as CH 
+        LEFT JOIN reservation RES 
+        ON RES.ID = CH.ID
+        AND (
+                (:start BETWEEN RES.start_date AND RES.ending_date )
+    	    OR
+    	        (:end BETWEEN RES.start_date AND RES.ending_date )
+    	    OR 
+    	        (:end <= RES.start_date AND :end >= RES.ending_date )    	
+	        )
+        WHERE RES.room IS NULL AND CH.type = :type ;
         ";
-        $result = $this->connect()->prepare($sql);  
+        $result = $this->connect()->prepare($sql);
+        $result->bindParam('start', $startDate);  
+        $result->bindParam('end', $endDate);  
+        $result->bindParam('end', $endDate);  
+        $result->bindParam('end', $endDate);  
+        $result->bindParam('type', $type);  
         $result->execute();
         $result = $result->fetchAll();
         return print_r($result);
