@@ -1,0 +1,81 @@
+<form 
+class="absolute hidden h-1/2 min-h-[400px] justify-center  top-1/2 left-1/2  translate-x-[-50%] translate-y-[-50%] bg-stale-50 z-50 "
+method="post" id="reservation-form" action="http://hotel.com/reservation/reserveChamber/<?php echo $this->viewData['id']; ?>"
+>
+
+<i id="close-form" class="uil uil-multiply absolute top-2 right-4 text-slate-400 cursor-pointer"></i>
+<div class="card bg-white p-12  md:rounded-lg w-full">
+        <div class="title">
+            <h2 class="font-bold text-center">reservation</h2>
+            <div class="flex justify-between">
+                <i id="add-person" class="text-xl uil uil-plus-circle text-slate-400  cursor-pointer"></i>
+            </div>
+        </div>
+        <input type="text" class="hidden" id="chamber-id" name="id">
+        <input type="date" class="hidden" id="start-date" name="start-date">
+        <input type="date" class="hidden" id="end-date" name="end-date">
+        <div id="persons" class="h-3/5 overflow-scroll">
+            <div class="form ">
+                <div class="flex flex-col text-sm">
+                    <label for="title" class="font-bold">Your name</label>
+                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name"> 
+                </div>
+
+               <div class="text-sm flex flex-col ">
+                <label for="description" class="font-bold ">Your birthday</label>
+                   <input type="date" name="birthday"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
+               </div>
+            </div>
+        </div>
+            
+
+            <div class="submit space-y-2">
+                <button type="submit" class=" w-full bg-slate-400 shadow-lg text-white px-4 py-2 hover:bg-slate-700 mt-8 text-center font-semibold focus:outline-none rounded">Submit</button>
+            </div>
+    </div>
+    
+</form>
+<script>
+    let form = document.getElementById('reservation-form');
+    let close = document.getElementById('close-form');
+    let add = document.getElementById('add-person');
+    let bookButtons = document.querySelectorAll('.book-button');
+    let container = document.getElementById('persons');
+    let html = `<div>
+                <div class="flex flex-col text-sm">
+                    <label for="title" class="font-bold mb-2">name <i  class="delete-person uil uil-minus-circle cursor-pointer"></i> </label>
+                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name"> 
+                </div>
+
+               <div class="text-sm flex flex-col ">
+                <label for="description" class="font-bold mt-4 mb-2">birthday</label>
+                   <input type="date" name="birthday"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
+               </div>
+               </div>
+               `;
+    let remove = document.querySelectorAll('.delete-person');
+    add.addEventListener('click', ()=>{
+        container.insertAdjacentHTML('beforeend', html);
+        remove = document.querySelectorAll('.delete-person');
+        remove.forEach( r =>{
+        r.addEventListener('click', ()=>{
+            r.parentElement.parentElement.parentElement.remove();
+        });
+    });
+    });
+    close.addEventListener('click', () =>{
+        form.classList.replace('flex', 'hidden');
+    });
+    bookButtons.forEach(button => { 
+        button.addEventListener('click', (e)=>{
+            form.classList.replace('hidden', 'flex');
+            let id = event.target.dataset.id;
+            let start = event.target.dataset.startDate;
+            let end = event.target.dataset.endDate;
+            document.getElementById('chamber-id').value = id;
+            document.getElementById('start-date').value = start;
+            document.getElementById('end-date').value = end;
+        });
+
+    });
+</script>

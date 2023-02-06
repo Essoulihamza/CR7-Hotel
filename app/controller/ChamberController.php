@@ -71,13 +71,14 @@ class ChamberController extends Controller {
         $this->model->deleteChamber($id);
         return header('Location: http://hotel.com/page/dashboard'); 
     }
-    public function Search(){
+    public function Search($user_id){
         if(isset($_POST['search'])) {
             if($_POST['room-type'] == "Suit")
                 $chamberType = $_POST['room-type'] . "/ " . $_POST['suit-type'];
             else
                 $chamberType = $_POST['room-type'];
-            $this->model('chamber')->searchChamber($chamberType, $_POST['starting-date'], $_POST['ending-date']);
+            $this->view('Pages/Booking', 'Booking', ['chambers' => $this->model('chamber')->searchChamber($chamberType, $_POST['starting-date'], $_POST['ending-date']), 'startingDate' => $_POST['starting-date'], 'endingDate' => $_POST['ending-date']]);
+            $this->view->render();
         }
     }
     

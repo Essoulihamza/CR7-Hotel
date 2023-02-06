@@ -32,17 +32,29 @@
     </div>
     <input type="submit" value="search" name="search" class="bg-secondary text-white w-48 rounded-full py-2 cursor-pointer">
   </form>
+<?php
+if (array_key_exists('chambers', $this->viewData) && !empty($this->viewData['chambers'])) { ?>
   <div class="flex flex-col md:flex-row gap-6 flex-wrap mt-10 max-h-[50vh] overflow-auto">
-    <div class="flex flex-col space-y-5 p-2 border rounded">
+    <?php foreach ($this->viewData['chambers'] as $chamber) { ?>
+    <!-- room -->
+    <div class="flex flex-col space-y-5 p-2 border rounded ">
         <div class="w-56">
-            <img src="/assets/images/background-1.jpg" class="rounded" alt="chamber">
+            <img src="/assets/images/chambers/<?php echo $chamber['image']; ?>" class="rounded" alt="chamber">
         </div>
         <div>
-            <h3>Single</h3>
-            <p>200 Dh</p>
+            <h3><?php echo $chamber['type']; ?></h3>
+            <p><?php echo $chamber['price']; ?> Dh / night</p>
+            <p>During : <br> <?php echo $this->viewData['startingDate'] . '  to   ' . $this->viewData['endingDate']; ?></p>
         </div>
-        <button class="bg-slate-400 rounded w-1/2 self-center"><a href="">Book</a></button>
+        <button class="book-button bg-slate-400 rounded w-1/2 self-center" data-id="<?php echo $chamber['ID']; ?>" data-start-date="<?php echo $this->viewData['startingDate']; ?>"
+        data-end-date="<?php echo $this->viewData['endingDate']; ?>">Book</button>
     </div>
+    <?php }
+} ?>
+    <!-- /room -->
   </div>
 </section>
-<?php include VIEW . "components/footer.phtml"; ?>
+
+<?php
+include VIEW . "Pages/reserve.phtml";
+ include VIEW . "components/footer.phtml"; ?>

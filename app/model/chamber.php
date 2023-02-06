@@ -66,7 +66,7 @@ class Chamber extends DataBase {
         SELECT * 
         FROM chamber as CH 
         LEFT JOIN reservation RES 
-        ON RES.ID = CH.ID
+        ON RES.Id = CH.ID
         AND (
                 (:start BETWEEN RES.start_date AND RES.ending_date )
     	    OR
@@ -84,6 +84,6 @@ class Chamber extends DataBase {
         $result->bindParam('type', $type);  
         $result->execute();
         $result = $result->fetchAll();
-        return print_r($result);
+        return $result;
     }
 }
