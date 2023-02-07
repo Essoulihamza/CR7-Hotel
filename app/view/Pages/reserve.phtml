@@ -18,12 +18,12 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
             <div class="form ">
                 <div class="flex flex-col text-sm">
                     <label for="title" class="font-bold">Your name</label>
-                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name"> 
+                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name[]"> 
                 </div>
 
                <div class="text-sm flex flex-col ">
                 <label for="description" class="font-bold ">Your birthday</label>
-                   <input type="date" name="birthday"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
+                   <input type="date" name="birthday[]"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
                </div>
             </div>
         </div>
@@ -44,12 +44,12 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
     let html = `<div>
                 <div class="flex flex-col text-sm">
                     <label for="title" class="font-bold mb-2">name <i  class="delete-person uil uil-minus-circle cursor-pointer"></i> </label>
-                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name"> 
+                    <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name[]"> 
                 </div>
 
                <div class="text-sm flex flex-col ">
                 <label for="description" class="font-bold mt-4 mb-2">birthday</label>
-                   <input type="date" name="birthday"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
+                   <input type="date" name="birthday[]"  class="appearance-none w-full border border-gray-200 p-2 h-12 focus:outline-none focus:border-gray-500">
                </div>
                </div>
                `;

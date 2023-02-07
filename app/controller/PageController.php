@@ -9,11 +9,18 @@ class PageController extends Controller {
         $this->view->render();
     }
     public function Booking() {
-        
-            $this->view('Pages/Booking', 'Booking', []);
+        if ($_SESSION['id']) {
+            $this->view('Pages/Booking', 'Booking', ['id' => $_SESSION['id']]);
             $this->view->render();
+        }
         
             
+    }
+    public function myRooms() {
+        if ($_SESSION['id']) {
+            $this->view('Pages/myRooms', 'My rooms', [ 'reservations' => $this->model('reservation')->getUserReservations($_SESSION['id']) ]);
+            $this->view->render();
+        }
     }
     public function Login($mode='') {
         $this->model('user');
@@ -48,6 +55,7 @@ class PageController extends Controller {
                 }
                 else if(!$_SESSION['admin']){
                     $_SESSION['admin'] = false;
+                    $_SESSION['id'] = $this->model->getUser($userName)['ID'];
                     header('location: http://hotel.com/page/index');
                 }
                 else
@@ -122,12 +130,6 @@ class PageController extends Controller {
             $this->view('Pages/edit', 'edit chamber', ['chamber' => $this->model])->render();
         }
             
-        else
-            header('Location: http://hotel.com/page/index');
-    }
-    public function reserveChamber($id) {
-        if($_SESSION['admin'])
-            $this->view('Pages/reserve', 'reserve chamber', ['id' => $_SESSION['id']])->render();
         else
             header('Location: http://hotel.com/page/index');
     }

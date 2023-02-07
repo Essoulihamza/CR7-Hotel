@@ -77,7 +77,7 @@ class ChamberController extends Controller {
                 $chamberType = $_POST['room-type'] . "/ " . $_POST['suit-type'];
             else
                 $chamberType = $_POST['room-type'];
-            $this->view('Pages/Booking', 'Booking', ['chambers' => $this->model('chamber')->searchChamber($chamberType, $_POST['starting-date'], $_POST['ending-date']), 'startingDate' => $_POST['starting-date'], 'endingDate' => $_POST['ending-date']]);
+            $this->view('Pages/Booking', 'Booking', ['chambers' => $this->model('chamber')->searchChamber($chamberType, $_POST['starting-date'], $_POST['ending-date']), 'startingDate' => $_POST['starting-date'], 'endingDate' => $_POST['ending-date'], 'id' => $user_id]);
             $this->view->render();
         }
     }
