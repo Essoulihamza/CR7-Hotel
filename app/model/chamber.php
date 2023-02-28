@@ -66,13 +66,13 @@ class Chamber extends DataBase {
         SELECT * 
         FROM chamber as CH 
         LEFT JOIN reservation RES 
-        ON RES.Id = CH.ID
+        ON RES.room = CH.ID
         AND (
                 (:start BETWEEN RES.start_date AND RES.ending_date )
     	    OR
     	        (:end BETWEEN RES.start_date AND RES.ending_date )
-    	    OR 
-    	        (:end <= RES.start_date AND :end >= RES.ending_date )    	
+    	    OR
+                (:end <= RES.start_date AND :end >= RES.ending_date )
 	        )
         WHERE RES.room IS NULL AND CH.type = :type ;
         ";

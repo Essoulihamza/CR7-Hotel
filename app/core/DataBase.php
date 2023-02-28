@@ -2,7 +2,7 @@
 class DataBase {
     private $host = "localhost";
     private $user = "root";
-    private $password = "";
+    private $password = "password";
     private $dataBaseName = "hotel";
 
     protected function connect() {
