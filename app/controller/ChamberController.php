@@ -1,8 +1,11 @@
 <?php
 class ChamberController extends Controller {
+
+    public function __construct(){
+        session_start();
+    }
     public function addRoom(){
         if (isset($_POST['add-chamber'])) {
-            
             if (empty($_POST['room-type']) || empty($_POST['room-price'])  || empty($_FILE['room_img']['name'])) {
                 $this->view('home', 'dashboard', ['addign error' => 'all the filds are required'])->render();
             } else if ($_POST['room-type'] === "Suit" && (empty($_POST['suit-type']) || empty($_POST['room-capacity']))) {
@@ -17,7 +20,7 @@ class ChamberController extends Controller {
                 $chamberImage = uniqid('', true).'.'.$_FILES['room_img']['name'];
                 move_uploaded_file($_FILES['room_img']['tmp_name'], "./assets/images/chambers/".$chamberImage);
                 $this->model->insertChamber($chamberType, $chamberCapacity, $chamberPrice, $chamberImage);
-                return header('Location: http://hotel.com/page/dashboard');                
+                header('Location: http://hotel.com/page/dashboard');                
             } else {
                 $chamberType = $_POST['room-type'] . "/ " . $_POST['suit-type'];
                 $chamberCapacity = $_POST['room-capacity'];
@@ -25,7 +28,7 @@ class ChamberController extends Controller {
                 $chamberImage = uniqid('', true).'.'.$_FILES['room_img']['name'];
                 move_uploaded_file($_FILES['room_img']['tmp_name'], "./assets/images/chambers/".$chamberImage);
                 $this->model->insertChamber($chamberType, $chamberCapacity, $chamberPrice, $chamberImage);
-                return header('Location: http://hotel.com/page/dashboard'); 
+                header('Location: http://hotel.com/page/dashboard'); 
             }
         }
     }

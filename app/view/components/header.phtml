@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
-    <!-- <script src="https://unicons.iconscout.com/release/v4.0.0/script/monochrome/bundle.js"/> -->
     <link href='https://css.gg/close.css' rel='stylesheet'>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
@@ -35,20 +34,21 @@
                <a href="http://hotel.com/page/index"><img src="/assets/images/logo.png" alt="hotel logo" width="100" class="py-1"></a> 
             </div>
             <ul class="hidden md:flex space-x-14">
-                    <li><a <?php echo ($this->viewTitle == 'Home' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/index">Home</a></li>
-                    <?php if (isset($_SESSION['admin'])) { ?>
+                    <?php if (isset($_SESSION['admin'])) { if(!$_SESSION['admin']) { ?>
+                    <li><a <?php echo ($this->viewTitle == 'Home' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/index">Home</a></li> <?php }} ?>
+                    <?php if(isset($_SESSION['id'])) { if ($_SESSION['id'] && !$_SESSION['admin']) { ?>
                     <li><a <?php echo ($this->viewTitle == 'Booking' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/Booking">Booking</a></li>
-                    <?php } ?>
+                    <?php } }?>
                     <?php if (isset($_SESSION['admin']) && $_SESSION['admin']) { ?>
                     <li><a <?php echo ($this->viewTitle == 'Dashboard' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/dashboard">Dashboard</a></li>
                     <?php } ?>
                     <?php if (isset($_SESSION['admin']) && !$_SESSION['admin']) { ?>
-                        <li><a <?php echo ($this->viewTitle == 'My Rooms' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/MyRooms">My Rooms</a></li>
+                        <li><a <?php echo ($this->viewTitle == 'MyRooms' ? 'class="bg-slate-900 text-light rounded px-6 pb-8 hover:text-secondary py-3"' : 'class="text-dark hover:text-secondary py-3"'); ?> href="http://hotel.com/page/MyRooms">My Rooms</a></li>
                     <?php } ?>
             </ul>
             <?php if (isset($_SESSION['admin'])) { ?>
                 <div class="hidden md:flex space-x-1 items-center">
-                <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 active:bg-slate-800 " href="http://hotel.com/page/LogOut">Log-out</a>
+                <a class="bg-slate-400 text-slate-50  font-medium px-6 py-2 rounded-full baseline hover:bg-slate-800 active:bg-slate-800 " href="http://hotel.com/user/LogOut">Log-out</a>
                 </div>
             <?php } else { ?>
             <div class="hidden md:flex space-x-1 items-center">

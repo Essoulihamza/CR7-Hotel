@@ -3,16 +3,20 @@
 <section class="p-12">
     <div class="w-full flex flex-col gap-5 px-5 overflow-auto">
         <?php if(array_key_exists('reservations', $this->viewData) && !empty($this->viewData['reservations'])) { 
-            foreach ($this->viewData['reservations'] as $reservation ){ ?>
+
+            foreach ($this->viewData['reservations'] as $reservation ){ 
+                 ?>
         <div class="bg-slate-50 w-full p-4 rounded flex flex-col md:flex-row items-center md:justify-between border-l-8 border-slate-400">
-                <p><?php echo $reservation['type']; ?></p>
+                <p><?php echo $reservation['type'];?></p>
                 <p><?php echo $reservation['price']; ?> DH / night</p>
                 <p> <span class="font-bold"><?php echo $reservation['start_date']; ?></span> To <span class="font-bold"><?php echo $reservation['ending_date']; ?></span></p>
                 <div>
                     <a href="http://hotel.com/reservation/delete/<?php echo $reservation['Id']; ?>"><button class="bg-slate-400  mt-6 md:mt-0   rounded-full text-slate-50 py-1 px-4" >
                         Cancel
                     </button></a>
-                </div> 
+                </div>
+            <div>
+            </div>
         </div>
         <?php } } ?>
 

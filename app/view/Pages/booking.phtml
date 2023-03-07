@@ -42,12 +42,12 @@ if (array_key_exists('chambers', $this->viewData) && !empty($this->viewData['cha
             <img src="/assets/images/chambers/<?php echo $chamber['image']; ?>" class="rounded" alt="chamber">
         </div>
         <div>
-            <h3><?php echo $chamber['type']; ?></h3>
+            <h3><?php echo $chamber['type'] . ' | ' . $chamber['capacity']; ?></h3>
             <p><?php echo $chamber['price']; ?> Dh / night</p>
             <p>During : <br> <?php echo $this->viewData['startingDate'] . '  to   ' . $this->viewData['endingDate']; ?></p>
         </div>
         <button class="book-button bg-slate-400 rounded w-1/2 self-center" data-id="<?php echo $chamber['ID']; ?>" data-start-date="<?php echo $this->viewData['startingDate']; ?>"
-        data-end-date="<?php echo $this->viewData['endingDate']; ?>">Book</button>
+        data-end-date="<?php echo $this->viewData['endingDate'];?>" data-capacity="<?php echo $chamber['capacity']; ?>">Book</button>
     </div>
     <?php }
 } ?>

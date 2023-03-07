@@ -14,7 +14,8 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
         <input type="text" class="hidden" id="chamber-id" name="id">
         <input type="date" class="hidden" id="start-date" name="start-date">
         <input type="date" class="hidden" id="end-date" name="end-date">
-        <div id="persons" class="h-3/5 overflow-scroll">
+        <input type="number" class="hidden" id="capacity" name="capacity">
+        <div id="persons" class="h-3/5 overflow-auto">
             <div class="form ">
                 <div class="flex flex-col text-sm">
                     <label for="title" class="font-bold">Your name</label>
@@ -41,7 +42,7 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
     let add = document.getElementById('add-person');
     let bookButtons = document.querySelectorAll('.book-button');
     let container = document.getElementById('persons');
-    let html = `<div>
+    let html = `<div class="guest">
                 <div class="flex flex-col text-sm">
                     <label for="title" class="font-bold mb-2">name <i  class="delete-person uil uil-minus-circle cursor-pointer"></i> </label>
                     <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter your name" name="name[]"> 
@@ -54,13 +55,18 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
                </div>
                `;
     let remove = document.querySelectorAll('.delete-person');
+    let guest = document.getElementsByClassName('guest');
+    let capacity = document.getElementById('capacity');
     add.addEventListener('click', ()=>{
+        if(guest.length + 1 < capacity.value) {
         container.insertAdjacentHTML('beforeend', html);
         remove = document.querySelectorAll('.delete-person');
+        }
         remove.forEach( r =>{
         r.addEventListener('click', ()=>{
             r.parentElement.parentElement.parentElement.remove();
         });
+        guest = document.getElementsByClassName('guest');
     });
     });
     close.addEventListener('click', () =>{
@@ -72,9 +78,11 @@ method="post" id="reservation-form" action="http://hotel.com/reservation/reserve
             let id = event.target.dataset.id;
             let start = event.target.dataset.startDate;
             let end = event.target.dataset.endDate;
+            let capacity = event.target.dataset.capacity;
             document.getElementById('chamber-id').value = id;
             document.getElementById('start-date').value = start;
             document.getElementById('end-date').value = end;
+            document.getElementById('capacity').value = capacity;
         });
 
     });
